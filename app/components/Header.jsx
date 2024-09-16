@@ -1,12 +1,18 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import RoundButton from "./RoundButton";
-const dashboardIcon = require("../assets/dashboards.png");
+const dashboardIcon = require("../assets/header/dashboard.png");
+const notificationIcon = require("../assets/header/notification.png");
 
 const Header = () => {
   //Left button action
   const handleLeftButtonPress = () => {
     console.log("Left button pressed");
+  };
+
+  //Right button action
+  const handleRightButtonPress = () => {
+    console.log("Right button pressed");
   };
 
   return (
@@ -24,12 +30,13 @@ const Header = () => {
       {/* Header Content */}
       {/* Right Button */}
       <RoundButton
-        width={30}
-        height={30}
+        width={44}
+        height={44}
         backgroundColor="#000000"
-        onPress={handleLeftButtonPress}
+        onPress={handleRightButtonPress}
         borderColor="#ffffff"
         borderWidth={1}
+        imageName={notificationIcon}
       />
     </View>
   );
