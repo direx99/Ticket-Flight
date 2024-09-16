@@ -1,6 +1,7 @@
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Header from "../components/Header";
+import SearchWidget from "../components/SearchWidget";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
             Explore, Journey, Discover & Adventure.
           </Text>
         </View>
+        <SearchWidget />
       </View>
     </SafeAreaView>
   );
