@@ -1,10 +1,27 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
 import RoundButton from "./RoundButton";
 const dashboardIcon = require("../assets/header/dashboard.png");
 const notificationIcon = require("../assets/header/notification.png");
+const mapIcon = require("../assets/header/map.png");
 
 const Header = () => {
+  // UseState
+  const [formattedDate, setFormattedDate] = useState();
+  const [location, setLocation] = useState();
+
+  const getFormattedDate = () => {
+    // Using current time
+    const options = {
+      weekday: "long", // Thursday
+      day: "2-digit", // 05
+      month: "short", // Dec
+      year: "2-digit", // 23
+    };
+    const date = new Date().toLocaleDateString("en-GB", options);
+    return date;
+  };
+
   //Left button action
   const handleLeftButtonPress = () => {
     console.log("Left button pressed");
@@ -14,6 +31,14 @@ const Header = () => {
   const handleRightButtonPress = () => {
     console.log("Right button pressed");
   };
+
+  useEffect(() => {
+    const time = getFormattedDate();
+    setFormattedDate(time);
+
+    // Todo : - setLocation
+    setLocation("West Java, Bandung");
+  }, []);
 
   return (
     <View style={styles.HeaderView}>
@@ -27,7 +52,16 @@ const Header = () => {
         borderWidth={1}
         imageName={dashboardIcon}
       />
+
       {/* Header Content */}
+      <View style={styles.headerContent}>
+        <Text style={styles.titleText}>{formattedDate}</Text>
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 3 }}>
+          <Image source={mapIcon} style={styles.navigationIcon} />
+          <Text style={styles.secondaryText}>{location}</Text>
+        </View>
+      </View>
+
       {/* Right Button */}
       <RoundButton
         width={44}
@@ -48,7 +82,7 @@ const styles = StyleSheet.create({
   HeaderView: {
     justifyContent: "space-between",
     flexDirection: "row",
-    backgroundColor: "red",
+    backgroundColor: "#080808",
     width: "100%",
     padding: 10,
   },
@@ -58,5 +92,31 @@ const styles = StyleSheet.create({
     height: 30,
     backgroundColor: "#ffffff",
     borderRadius: 30,
+  },
+
+  headerContent: {
+    alignItems: "center",
+    flex: 1,
+    justifyContent: "center",
+    gap: 5,
+  },
+
+  titleText: {
+    fontSize: 15,
+    fontWeight: "500",
+    color: "#fff",
+  },
+
+  secondaryText: {
+    fontSize: 13,
+    color: "#fff",
+    fontWeight: "400",
+    opacity: 0.6,
+  },
+
+  navigationIcon: {
+    height: 10,
+    width: 10,
+    opacity: 0.6,
   },
 });
