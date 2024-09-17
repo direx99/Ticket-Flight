@@ -49,6 +49,9 @@ const SearchWidget = () => {
           <PassengerCountButton />
         </View>
       </View>
+      <TouchableOpacity style={styles.searchButton}>
+        <Text style={styles.searchText}>Search</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -113,5 +116,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
+  },
+
+  searchButton: {
+    backgroundColor: "#000000",
+    width: "100%",
+    alignItems: "center",
+    borderRadius: 10,
+    marginTop: 20,
+  },
+  searchText: {
+    color: "#ffffff",
+    paddingVertical: 12,
+    fontSize: 17,
+    fontWeight: "500",
   },
 });
