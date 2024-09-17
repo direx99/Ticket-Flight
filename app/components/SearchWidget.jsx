@@ -1,5 +1,7 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
+
+const userIcon = require("../assets/search/user.png");
 
 const TextButton = ({ title, isSelected, onPress }) => {
   return (
@@ -7,7 +9,18 @@ const TextButton = ({ title, isSelected, onPress }) => {
       onPress={onPress}
       style={isSelected ? styles.selectedButton : styles.deSelectedButton}
     >
-      <Text>{title}</Text>
+      <Text style={isSelected ? styles.selectedText : styles.deSelectedText}>
+        {title}
+      </Text>
+    </TouchableOpacity>
+  );
+};
+
+const PassengerCountButton = () => {
+  return (
+    <TouchableOpacity style={styles.passengerButton}>
+      <Image source={userIcon} style={styles.passengerIcon} />
+      <Text>4</Text>
     </TouchableOpacity>
   );
 };
@@ -33,11 +46,7 @@ const SearchWidget = () => {
           onPress={() => handleButtonPress("Round trip")}
         />
         <View style={{ flex: 1, alignItems: "flex-end" }}>
-          <TextButton
-            title="Multi-city"
-            isSelected={selectedButton === "Multi-city"}
-            onPress={{}}
-          />
+          <PassengerCountButton />
         </View>
       </View>
     </View>
@@ -56,22 +65,53 @@ const styles = StyleSheet.create({
   },
 
   selectedButton: {
-    paddingHorizontal: 5,
-    paddingVertical: 4,
-    backgroundColor: "red",
-    borderRadius: 5,
-  },
-
-  deSelectedButton: {
-    paddingHorizontal: 5,
+    paddingHorizontal: 8,
     paddingVertical: 5,
     backgroundColor: "#E6E6E6",
     borderRadius: 5,
+    borderWidth: 1,
+    borderColor: "#E6E6E6",
+  },
+
+  deSelectedButton: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    backgroundColor: "#ffffff",
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: "#E9ECF6",
   },
 
   topView: {
     flexDirection: "row",
     justifyContent: "flex-start",
     gap: 10,
+  },
+
+  deSelectedText: {
+    color: "#8A98AC",
+    fontSize: 15,
+  },
+
+  selectedText: {
+    color: "#000000",
+    fontSize: 15,
+  },
+
+  passengerIcon: {
+    width: 16,
+    height: 16,
+  },
+
+  passengerButton: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    backgroundColor: "#ffffff",
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: "#E9ECF6",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
   },
 });
