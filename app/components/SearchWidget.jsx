@@ -25,8 +25,21 @@ const PassengerCountButton = () => {
   );
 };
 
+const SelectionButton = ({ title, value }) => {
+  return (
+    <TouchableOpacity style={styles.selectionButton}>
+      <Text numberOfLines={1} style={styles.smallLightText}>
+        {title}
+      </Text>
+      <Text numberOfLines={1} style={styles.regularText}>
+        {value}
+      </Text>
+    </TouchableOpacity>
+  );
+};
+
 const SearchWidget = () => {
-  const [selectedButton, setSelectedButton] = useState(null);
+  const [selectedButton, setSelectedButton] = useState("One-way");
 
   const handleButtonPress = (buttonTitle) => {
     setSelectedButton(buttonTitle);
@@ -49,9 +62,19 @@ const SearchWidget = () => {
           <PassengerCountButton />
         </View>
       </View>
-      <TouchableOpacity style={styles.searchButton}>
-        <Text style={styles.searchText}>Search</Text>
-      </TouchableOpacity>
+      <View style={{ width: "100%", gap: 10 }}>
+        <View style={{ flexDirection: "row", gap: 10 }}>
+          <SelectionButton title={"From"} value={"West Java, Bandung"} />
+          <SelectionButton title={"To"} value={"Berlin, German"} />
+        </View>
+        <View style={{ flexDirection: "row", gap: 10 }}>
+          <SelectionButton title={"Departure"} value={"March 06"} />
+          <SelectionButton title={"Return"} value={"March 16"} />
+        </View>
+        <TouchableOpacity style={styles.searchButton}>
+          <Text style={styles.searchText}>Search</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -65,6 +88,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 20,
     padding: 10,
+    marginTop: 20,
   },
 
   selectedButton: {
@@ -78,7 +102,7 @@ const styles = StyleSheet.create({
 
   deSelectedButton: {
     paddingHorizontal: 8,
-    paddingVertical: 4,
+    paddingVertical: 5,
     backgroundColor: "#ffffff",
     borderRadius: 5,
     borderWidth: 1,
@@ -89,6 +113,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     gap: 10,
+    marginBottom: 15,
   },
 
   deSelectedText: {
@@ -122,13 +147,31 @@ const styles = StyleSheet.create({
     backgroundColor: "#000000",
     width: "100%",
     alignItems: "center",
-    borderRadius: 10,
-    marginTop: 20,
+    borderRadius: 15,
+    marginTop: 15,
   },
   searchText: {
     color: "#ffffff",
     paddingVertical: 12,
     fontSize: 17,
-    fontWeight: "500",
+    fontWeight: "600",
+  },
+  selectionButton: {
+    backgroundColor: "#F8F9FD",
+    flex: 1,
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+  },
+  smallLightText: {
+    color: "#000000",
+    opacity: 0.3,
+    fontSize: 14,
+  },
+
+  regularText: {
+    color: "#000000",
+    opacity: 0.7,
+    fontSize: 15,
   },
 });
